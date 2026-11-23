@@ -1,0 +1,270 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WarrantyWise | AI Warranty Assistant</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<div class="app-container">
+
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-icon">W</div>
+            <div>
+                <h2>WarrantyWise</h2>
+                <p>AI WARRANTY ASSISTANT</p>
+            </div>
+        </div>
+
+        <div class="sidebar-section">
+            <p class="sidebar-heading">MENU</p>
+            <button class="nav-item active" id="homeNav">
+                <span>⌂</span> Dashboard
+            </button>
+            <button class="nav-item" id="newChatNav">
+                <span>＋</span> New conversation
+            </button>
+        </div>
+
+        <div class="sidebar-bottom">
+            <div class="system-status">
+                <span class="status-dot"></span>
+                <div>
+                    <strong>System ready</strong>
+                    <small>WarrantyWise MCP</small>
+                </div>
+            </div>
+            <p class="sidebar-footer">Built with AI + Model Context Protocol</p>
+        </div>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <p class="breadcrumb">WORKSPACE / DASHBOARD</p>
+                <h1>Warranty Assistant</h1>
+            </div>
+            <div class="topbar-right">
+                <span class="connection-badge">
+                    <span class="status-dot"></span>
+                    Connected
+                </span>
+                <div class="avatar">W</div>
+            </div>
+        </header>
+
+        <section class="welcome-section">
+            <div>
+                <p class="eyebrow">YOUR PERSONAL WARRANTY ASSISTANT</p>
+                <h2>Warranty management,<br><span>made effortless.</span></h2>
+                <p class="welcome-description">
+                    Upload your receipts, verify warranty coverage,
+                    and prepare claims using your purchase records.
+                </p>
+            </div>
+            <div class="welcome-graphic">
+                <div class="graphic-circle">
+                    <div class="shield">✓</div>
+                </div>
+                <span class="graphic-label">SMART WARRANTY CHECK</span>
+            </div>
+        </section>
+
+        <section class="quick-actions">
+            <button class="action-card" data-prompt="Check whether my Sony headphones are under warranty.">
+                <span class="action-icon purple">⌕</span>
+                <span>
+                    <strong>Check warranty</strong>
+                    <small>Verify product coverage</small>
+                </span>
+                <span class="action-arrow">↗</span>
+            </button>
+
+            <button class="action-card" data-prompt="My Sony headphones stopped working. Check whether they are under warranty and prepare a claim for me.">
+                <span class="action-icon green">▣</span>
+                <span>
+                    <strong>Prepare a claim</strong>
+                    <small>Create a claim draft</small>
+                </span>
+                <span class="action-arrow">↗</span>
+            </button>
+        </section>
+
+        <!-- Receipt Upload -->
+        <section class="upload-section" id="uploadSection">
+            <div class="section-heading">
+                <div>
+                    <h3>Upload Purchase Receipt</h3>
+                    <p>Let AI extract your purchase and warranty details.</p>
+                </div>
+                <span class="ai-label">✦ AI RECEIPT SCANNER</span>
+            </div>
+
+            <form id="uploadForm">
+                <label class="upload-dropzone" for="receiptFile">
+                    <span class="upload-icon">↑</span>
+                    <strong>Choose a receipt to upload</strong>
+                    <span>JPG, JPEG, PNG or PDF · Maximum 10 MB</span>
+                    <span class="selected-file" id="selectedFileName">
+                        No file selected
+                    </span>
+                </label>
+
+                <input
+                    type="file"
+                    id="receiptFile"
+                    accept=".jpg,.jpeg,.png,.pdf"
+                    hidden
+                    required
+                >
+
+                <button type="submit" class="primary-button" id="uploadButton">
+                    <span id="uploadButtonText">Upload and scan receipt</span>
+                    <span>→</span>
+                </button>
+            </form>
+
+            <div id="uploadStatus" class="upload-status hidden"></div>
+
+            <!-- Extracted receipt review -->
+            <div id="receiptReview" class="receipt-review hidden">
+                <div class="review-heading">
+                    <div>
+                        <h4>Review extracted information</h4>
+                        <p>Check the details before saving your receipt.</p>
+                    </div>
+                    <span class="review-badge">REVIEW REQUIRED</span>
+                </div>
+
+                <form id="confirmForm">
+                    <div class="review-grid">
+                        <label class="field-group">
+                            <span>Brand</span>
+                            <input type="text" id="reviewBrand" required>
+                        </label>
+
+                        <label class="field-group">
+                            <span>Product</span>
+                            <input type="text" id="reviewProduct" required>
+                        </label>
+
+                        <label class="field-group">
+                            <span>Purchase date</span>
+                            <input type="date" id="reviewDate" required>
+                        </label>
+
+                        <label class="field-group">
+                            <span>Price (₹)</span>
+                            <input type="number" id="reviewPrice" min="0" step="0.01" placeholder="Optional">
+                        </label>
+
+                        <label class="field-group">
+                            <span>Warranty duration (years)</span>
+                            <input type="number" id="reviewWarranty" min="1" step="1" placeholder="Leave blank if unknown">
+                        </label>
+                    </div>
+
+                    <p class="review-note">
+                        If the receipt does not clearly show a warranty duration,
+                        leave it blank. WarrantyWise will not assume one.
+                    </p>
+
+                    <div class="review-actions">
+                        <button type="button" class="secondary-button" id="cancelReviewButton">
+                            Cancel
+                        </button>
+                        <button type="submit" class="primary-button" id="confirmButton">
+                            <span id="confirmButtonText">Confirm and save receipt</span>
+                            <span>✓</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div id="savedReceiptResult" class="saved-receipt hidden"></div>
+        </section>
+
+        <!-- Assistant -->
+        <section class="assistant-section">
+            <div class="section-heading">
+                <div>
+                    <h3>Ask WarrantyWise</h3>
+                    <p>Describe your product or warranty issue below.</p>
+                </div>
+                <span class="ai-label">✦ AI POWERED</span>
+            </div>
+
+            <div class="chat-container" id="chatContainer">
+                <div class="chat-message assistant-message">
+                    <div class="message-avatar">W</div>
+                    <div class="message-content">
+                        <div class="message-author">
+                            WarrantyWise <span>AI ASSISTANT</span>
+                        </div>
+                        <div class="message-bubble">
+                            Hello! I'm your WarrantyWise assistant.
+                            I can search your purchase receipts, check
+                            warranty status, and prepare a warranty claim
+                            draft for eligible products.
+
+                            <br><br>
+                            What product would you like me to check?
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <form class="chat-input-area" id="chatForm">
+                <textarea
+                    id="userInput"
+                    placeholder="Example: My Dell laptop is not working. Check its warranty..."
+                    rows="2"
+                    required
+                ></textarea>
+
+                <div class="input-bottom">
+                    <span>✦ Powered by WarrantyWise MCP tools</span>
+                    <button type="submit" id="sendButton">
+                        <span id="sendButtonText">Send message</span>
+                        <span>➤</span>
+                    </button>
+                </div>
+            </form>
+
+            <p class="privacy-note">
+                WarrantyWise verifies information using available purchase records.
+                Claim drafts are not submitted automatically.
+            </p>
+        </section>
+
+        <!-- Warranty Report -->
+        <section class="result-section hidden" id="resultSection">
+            <div class="section-heading">
+                <div>
+                    <h3>Warranty Report</h3>
+                    <p>Results retrieved from your purchase records.</p>
+                </div>
+                <span class="verified-label">✓ VERIFIED RESULT</span>
+            </div>
+            <div id="resultContent"></div>
+        </section>
+
+        <footer class="main-footer">
+            <span>WarrantyWise © 2026</span>
+            <span>Intelligent warranty management</span>
+        </footer>
+
+    </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

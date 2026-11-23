@@ -1,0 +1,50 @@
+[
+  {
+    "receipt_id": "WW001",
+    "product": "Wireless Headphones",
+    "brand": "Sony",
+    "purchase_date": "2025-06-15",
+    "warranty_years": 2,
+    "price": 4999
+  },
+  {
+    "receipt_id": "WW002",
+    "product": "Laptop",
+    "brand": "Dell",
+    "purchase_date": "2024-01-10",
+    "warranty_years": 1,
+    "price": 55000
+  },
+  {
+    "receipt_id": "WW003",
+    "product": "Smartphone",
+    "brand": "Samsung",
+    "purchase_date": "2026-03-20",
+    "warranty_years": 1,
+    "price": 25000
+  },
+  {
+    "receipt_id": "WWE9D7B77E",
+    "product": "Sony WH-CH720N Wireless Headphones",
+    "brand": "Sony",
+    "purchase_date": "2026-11-18",
+    "warranty_years": 2,
+    "price": 8990.0
+  },
+  {
+    "receipt_id": "WW368EE315",
+    "product": "Sony WH-CH720N Wireless Headphones",
+    "brand": "Sony",
+    "purchase_date": "2026-11-18",
+    "warranty_years": 2,
+    "price": 8990.0
+  },
+  {
+    "receipt_id": "WW33A0A239",
+    "product": "Sony WH-CH720N",
+    "brand": "SONY",
+    "purchase_date": "2026-11-17",
+    "warranty_years": null,
+    "price": 89.99
+  }
+]
